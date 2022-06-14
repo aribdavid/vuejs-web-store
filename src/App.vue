@@ -3,6 +3,7 @@ import PlanSelector from './components/PlanSelector.vue'
 import FixoSelector from './components/FixoSelector.vue'
 import TvSelector from './components/TvSelector.vue'
 import Checkout from './components/Checkout.vue'
+
 </script>
 
 <template>

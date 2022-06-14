@@ -1,5 +1,7 @@
 <script >
 import axios from "axios";
+import { productStore } from '../stores/productStore';
+import { storeToRefs } from 'pinia';
 
   export default {
    name: "Fixo",
@@ -11,6 +13,16 @@ import axios from "axios";
    created() {
      this.getPlans();
    },
+     setup() {
+     const store = productStore();
+     const { disableOptions } = storeToRefs(store)
+     const { selectPlan } = store;
+     return {
+       store,
+       disableOptions,
+       selectPlan,
+     }
+     },
    methods: {
      getPlans() {
        axios
@@ -32,7 +44,7 @@ import axios from "axios";
   <h3>Agora escolha seu pacote de telefone fixo </h3>
   <div class='section'> 
    <div class='container'  v-for="plan in fixoPlans" :key="plan.id">
-    <input type="radio" v-bind:id="plan.title" name="phone-plan" value='ilimitado-fixo-brasil'>
+    <input v-bind:disabled="disableOptions" @change="selectPlan('Fixo', message)" type="radio" v-bind:id="plan.title" name="phone-plan" v-model="message" v-bind:value="plan.price">
   <br>
   <label v-bind:for="plan.title">{{plan.title}}</label>
    <h5>R$ {{plan.price}}</h5> 

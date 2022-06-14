@@ -1,14 +1,17 @@
-<script setup>
-defineProps({
-  planCategory: {
-    type: String,
-    required: true
-  },
-  planNames: {
-    type: String,
-    required: true
-  }
-})
+<script >
+import { productStore } from '../stores/productStore';
+import { storeToRefs } from 'pinia';
+
+export default {
+   setup() {
+     const store = productStore();
+     const { totalPrice } = storeToRefs(store)
+     return {
+       store,
+       totalPrice
+     }
+     },
+}
 </script>
 
 <template>
@@ -19,7 +22,7 @@ defineProps({
   </div>
   <div class='section'>  
   <h3>Total </h3> 
-  <h5>R$ 199,90 </h5>
+  <h5>R$ {{totalPrice.toFixed(2)}}</h5>
   </div>
   <button type='button'>Continuar </button>
   </section>

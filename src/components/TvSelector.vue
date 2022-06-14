@@ -1,5 +1,7 @@
 <script >
 import axios from "axios";
+import { productStore } from '../stores/productStore';
+import { storeToRefs } from 'pinia';
 
   export default {
    name: "Tv",
@@ -11,6 +13,16 @@ import axios from "axios";
    created() {
      this.getPlans();
    },
+      setup() {
+     const store = productStore();
+     const { disableOptions } = storeToRefs(store);
+     const { selectPlan } = store;
+     return {
+       store,
+       disableOptions,
+       selectPlan,
+     }
+     },
    methods: {
      getPlans() {
        axios
@@ -32,7 +44,7 @@ import axios from "axios";
   <h3>Agora escolha seu pacote de TV </h3>
   <div class='section'> 
   <div class='container' v-for="plan in tvPlans" :key="plan.id" >
-  <input type="radio" v-bind:id="plan.title" name="tv-plan" value="100MB">
+  <input type="radio" @change="selectPlan('Tv', message)" v-bind:disabled="disableOptions" v-bind:id="plan.title" name="tv-plan" v-model="message" v-bind:value="plan.price">
   <br>
   <label class='title' v-bind:for="plan.title">{{ plan.title }}</label>
   <h5>R$ {{plan.price}}</h5> 

@@ -1,5 +1,7 @@
 <script> 
 import axios from "axios";
+import { productStore } from '../stores/productStore';
+
 
   export default {
    name: "Internet",
@@ -11,6 +13,16 @@ import axios from "axios";
    created() {
      this.getPlans();
    },
+   setup() {
+     const store = productStore();
+     const { clickInternetPlan, selectPlan} = store
+
+     return {
+       store,
+       clickInternetPlan,
+       selectPlan
+     }
+     },
    methods: {
      getPlans() {
        axios
@@ -21,7 +33,7 @@ import axios from "axios";
          .catch((error) => {
            console.log(error);
          });
-     },
+     }
    },
   };
 
@@ -33,7 +45,7 @@ import axios from "axios";
   <h3>Selecione um plano de internet para continuar </h3>
   <div class='section'> 
    <div class='container' v-for="plan in internetPlans" :key="plan.id" >
-  <input type="radio" v-bind:id="plan.title" name="internet-plan" value="100MB">
+  <input type="radio" v-on:click="clickInternetPlan" @change="selectPlan('Internet', message)" v-bind:id="plan.title" name="internet-plan" v-model="message" v-bind:value="plan.price">
   <br>
   <label class='title' v-bind:for="plan.title" >{{ plan.title }}</label>
   <h5>R$ {{plan.price}}</h5> 
