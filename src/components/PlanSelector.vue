@@ -1,16 +1,29 @@
-<script setup>
-defineProps({
-  planCategory: {
-    type: String,
-    required: true
-  },
-  planNames: {
-    type: String,
-    required: true
-  }
-})
+<script> 
+import axios from "axios";
 
-    console.log(`the component is now mounted.`)
+  export default {
+   name: "Internet",
+   data() {
+     return {
+       internetPlans: [],
+     };
+   },
+   created() {
+     this.getPlans();
+   },
+   methods: {
+     getPlans() {
+       axios
+         .get("https://my-json-server.typicode.com/aribdavid/my-json-file/Internet")
+         .then((response) => {
+           this.internetPlans = response.data;
+         })
+         .catch((error) => {
+           console.log(error);
+         });
+     },
+   },
+  };
 
 </script>
 
@@ -19,30 +32,23 @@ defineProps({
   <h1>Internet </h1>
   <h3>Selecione um plano de internet para continuar </h3>
   <div class='section'> 
-   <div class='container'>
-  <input type="radio" id='internet-100mb' name="internet-plan" value="100MB">
+   <div class='container' v-for="plan in internetPlans" :key="plan.id" >
+  <input type="radio" v-bind:id="plan.title" name="internet-plan" value="100MB">
   <br>
-  <label class='title' for="internet-100mb">100MB</label>
-  <h5>R$ 79,90</h5> 
-  <h6> Mais Detalhes </h6>
-  </div>
-   <div class='container'>
-   <input type="radio" id='internet-200mb' name="internet-plan" value="200MB">
-    <br>
-  <label class='title' for="internet-200mb">200MB</label>
-  <h5>R$ 79,90</h5> 
-  <h6> Mais Detalhes </h6> 
-  </div>
-  <div class='container'> 
-  <input type="radio" id='internet-300mb' name="internet-plan" value="300MB">
-    <br>
-  <label class='title' for="internet-300mb">300MB</label> 
-  <h5>R$ 79,90</h5> 
+  <label class='title' v-bind:for="plan.title" >{{ plan.title }}</label>
+  <h5>R$ {{plan.price}}</h5> 
   <h6> Mais Detalhes </h6>
   </div>
   </div>
   </section>
 </template>
+
+
+
+
+
+
+
 
 <style scoped>
 h1 {

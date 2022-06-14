@@ -1,14 +1,29 @@
-<script setup>
-defineProps({
-  planCategory: {
-    type: String,
-    required: true
-  },
-  planNames: {
-    type: String,
-    required: true
-  }
-})
+<script >
+import axios from "axios";
+
+  export default {
+   name: "Tv",
+   data() {
+     return {
+       tvPlans: [],
+     };
+   },
+   created() {
+     this.getPlans();
+   },
+   methods: {
+     getPlans() {
+       axios
+         .get("https://my-json-server.typicode.com/aribdavid/my-json-file/TV")
+         .then((response) => {
+           this.tvPlans = response.data;
+         })
+         .catch((error) => {
+           console.log(error);
+         });
+     },
+   },
+  };
 </script>
 
 <template>
@@ -16,16 +31,13 @@ defineProps({
   <h1>TV </h1>
   <h3>Agora escolha seu pacote de TV </h3>
   <div class='section'> 
-   <div class='container'>
-  <input type="radio" id='ultimate-hd' name="tv-plan" value='Ultimate HD'>
+  <div class='container' v-for="plan in tvPlans" :key="plan.id" >
+  <input type="radio" v-bind:id="plan.title" name="tv-plan" value="100MB">
   <br>
-  <label for="ultimate-hd">Ultimate HD</label>
+  <label class='title' v-bind:for="plan.title">{{ plan.title }}</label>
+  <h5>R$ {{plan.price}}</h5> 
   </div>
-  <div class='container'>
-   <input type="radio" id='full-hd' name="tv-plan" value="Ultimate HD">
-  <br>
-  <label for="full-hd">Full HD</label>
-  </div>
+ 
  </div>
   </section>
 </template>

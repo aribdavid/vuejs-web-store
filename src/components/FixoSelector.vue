@@ -1,14 +1,29 @@
-<script setup>
-defineProps({
-  planCategory: {
-    type: String,
-    required: true
-  },
-  planNames: {
-    type: String,
-    required: true
-  }
-})
+<script >
+import axios from "axios";
+
+  export default {
+   name: "Fixo",
+   data() {
+     return {
+       fixoPlans: [],
+     };
+   },
+   created() {
+     this.getPlans();
+   },
+   methods: {
+     getPlans() {
+       axios
+         .get("https://my-json-server.typicode.com/aribdavid/my-json-file/Fixo")
+         .then((response) => {
+           this.fixoPlans = response.data;
+         })
+         .catch((error) => {
+           console.log(error);
+         });
+     },
+   },
+  };
 </script>
 
 <template>
@@ -16,10 +31,11 @@ defineProps({
   <h1>Fixo </h1>
   <h3>Agora escolha seu pacote de telefone fixo </h3>
   <div class='section'> 
-   <div class='container'>
-    <input type="radio" id='ilimitado-fixo-brasil' name="phone-plan" value='ilimitado-fixo-brasil'>
+   <div class='container'  v-for="plan in fixoPlans" :key="plan.id">
+    <input type="radio" v-bind:id="plan.title" name="phone-plan" value='ilimitado-fixo-brasil'>
   <br>
-  <label for='ilimitado-fixo-brasil'>Ilimitado Fixo Brasil</label>
+  <label v-bind:for="plan.title">{{plan.title}}</label>
+   <h5>R$ {{plan.price}}</h5> 
    </div>
   </div>
   </section>
