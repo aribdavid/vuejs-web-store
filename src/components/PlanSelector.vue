@@ -49,7 +49,7 @@ import { productStore } from '../stores/productStore';
   <br>
   <label class='title' v-bind:for="plan.title" >{{ plan.title }}</label>
   <h5>R$ {{plan.price}}</h5> 
-  <a href='/'> Mais Detalhes </a>
+  <a href='/'> + Detalhes </a>
   </div>
   </div>
   </section>

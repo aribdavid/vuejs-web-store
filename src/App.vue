@@ -57,5 +57,11 @@ import Checkout from './components/Checkout.vue'
     color: grey
   }
 
+  a{
+     text-decoration: none;
+     color: grey;
+     font-weight: 600
+  }
+
 }
 </style>

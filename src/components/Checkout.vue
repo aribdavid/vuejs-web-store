@@ -5,10 +5,13 @@ import { storeToRefs } from 'pinia';
 export default {
    setup() {
      const store = productStore();
-     const { totalPrice } = storeToRefs(store)
+     const { totalPrice, selectedPlans } = storeToRefs(store)
+     const { selectPlan} = store;
      return {
        store,
-       totalPrice
+       totalPrice,
+       selectedPlans,
+       selectPlan
      }
      },
 }
@@ -20,6 +23,10 @@ export default {
   <h5>Taxa de Instalação </h5> 
   <h5>Grátis </h5>
   </div>
+  <ul  v-for="product in selectedPlans">
+  <li> {{product.nome}} </li>
+  <a v-on:click="selectPlan('Internet', '', 0)">Remover </a>
+  </ul>
   <div class='section total-layout'>  
   <h3>Total </h3> 
   <h5>R$ {{totalPrice.toFixed(2)}}</h5>
