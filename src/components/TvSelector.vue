@@ -44,7 +44,7 @@ import { storeToRefs } from 'pinia';
   <h3>Agora escolha seu pacote de TV </h3>
   <div class='section'> 
   <div class='container' v-for="plan in tvPlans" :key="plan.id" >
-  <input type="radio" @change="selectPlan('Tv', message)" v-bind:disabled="disableOptions" v-bind:id="plan.title" name="tv-plan" v-model="message" v-bind:value="plan.price">
+  <input type="radio" @change="selectPlan('Tv',plan.title, message)" v-bind:disabled="disableOptions" v-bind:id="plan.title" name="tv-plan" v-model="message" v-bind:value="plan.price">
   <br>
   <label class='title' v-bind:for="plan.title">{{ plan.title }}</label>
   <h5>R$ {{plan.price}}</h5> 
@@ -77,6 +77,10 @@ h3 {
   flex-direction: row;
   justify-content: space-between;
 
+}
+
+.title {
+  font-weight: 700;
 }
 
 @media (min-width: 1024px) {

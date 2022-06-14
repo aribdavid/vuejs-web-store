@@ -45,11 +45,11 @@ import { productStore } from '../stores/productStore';
   <h3>Selecione um plano de internet para continuar </h3>
   <div class='section'> 
    <div class='container' v-for="plan in internetPlans" :key="plan.id" >
-  <input type="radio" v-on:click="clickInternetPlan" @change="selectPlan('Internet', message)" v-bind:id="plan.title" name="internet-plan" v-model="message" v-bind:value="plan.price">
+  <input type="radio" v-on:click="clickInternetPlan" @change="selectPlan('Internet',plan.title, message)" v-bind:id="plan.title" name="internet-plan" v-model="message" v-bind:value="plan.price">
   <br>
   <label class='title' v-bind:for="plan.title" >{{ plan.title }}</label>
   <h5>R$ {{plan.price}}</h5> 
-  <h6> Mais Detalhes </h6>
+  <a href='/'> Mais Detalhes </a>
   </div>
   </div>
   </section>
@@ -89,15 +89,8 @@ h3 {
   font-size: 1.2rem;
 }
 
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
 @media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
     text-align: left;
   }
-}
+
 </style>

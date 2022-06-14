@@ -28,19 +28,6 @@ import Checkout from './components/Checkout.vue'
   flex-direction: column;
   }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
 @media (min-width: 1024px) {
   body {
     display: flex;
@@ -52,6 +39,22 @@ a,
     display: flex;
     flex-direction: column;
     padding: 0 2rem;
+  }
+
+  button {
+    border: 2px solid grey;
+    background-color: grey;
+    color: white;
+    height: 60px;
+    width: 200px;
+    font-weight: 700;
+    font-size: 1.2rem
+  }
+
+  button:hover {
+    border: 2px solid white;
+    background-color: white;
+    color: grey
   }
 
 }

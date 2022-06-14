@@ -20,7 +20,7 @@ export default {
   <h5>Taxa de Instalação </h5> 
   <h5>Grátis </h5>
   </div>
-  <div class='section'>  
+  <div class='section total-layout'>  
   <h3>Total </h3> 
   <h5>R$ {{totalPrice.toFixed(2)}}</h5>
   </div>
@@ -32,6 +32,11 @@ export default {
 .section{
   display: flex;
   justify-content: space-between;
+  font-size: 1.2rem 
+}
+
+.total-layout {
+  color: #9400D3;
 }
 
 </style>
