@@ -24,9 +24,9 @@ export default {
   <h5>Grátis </h5>
   </div>
   <ul  v-for="product in selectedPlans">
-  <li> {{product.name}} </li>
-<a v-on:click="selectPlan(product.category, '', 0)">Remover </a>
-  </ul>
+  <li v-if="product.price > 0"> {{product.name}} </li>
+<a v-if="product.price > 0" v-on:click="selectPlan(product.category, '', 0)">Remover </a>
+  </ul> 
   <div class='section total-layout'>  
   <h3>Total </h3> 
   <h5>R$ {{totalPrice.toFixed(2)}}</h5>
