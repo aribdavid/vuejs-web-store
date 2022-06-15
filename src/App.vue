@@ -52,8 +52,8 @@ import Checkout from './components/Checkout.vue'
   }
 
   button:hover {
-    border: 2px solid white;
-    background-color: white;
+    border: 2px solid #d3d3d3;
+    background-color: #d3d3d3;
     color: grey
   }
 
