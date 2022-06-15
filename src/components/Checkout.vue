@@ -24,8 +24,8 @@ export default {
   <h5>Grátis </h5>
   </div>
   <ul  v-for="product in selectedPlans">
-  <li> {{product.nome}} </li>
-  <a v-on:click="selectPlan('Internet', '', 0)">Remover </a>
+  <li> {{product.name}} </li>
+<a v-on:click="selectPlan(product.category, '', 0)">Remover </a>
   </ul>
   <div class='section total-layout'>  
   <h3>Total </h3> 

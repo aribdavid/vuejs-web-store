@@ -6,9 +6,9 @@ export const productStore = defineStore('productStore', {
       disableOptions: true,
       isPlanSelected: false,
       selectedPlans: {
-        Internet: {nome: '', preco: 0},
-        Tv: {nome: '', preco: 0},
-        Fixo: {nome: '', preco: 0}
+        Internet: {name:'', price: 0, category: ''},
+        Tv: {name:'', price: 0, category: ''},
+        Fixo: {name:'', price: 0, category: ''} 
       },
       totalPrice: 0
     }
@@ -19,10 +19,11 @@ export const productStore = defineStore('productStore', {
       this.disableOptions = false
     },
     selectPlan(category, name, amount){
-      this.selectedPlans[category].preco = Number(amount);
-      this.selectedPlans[category].nome = name;
-      this.totalPrice = this.selectedPlans["Internet"].preco +
-      this.selectedPlans["Tv"].preco + this.selectedPlans["Fixo"].preco
+      this.selectedPlans[category].price = Number(amount);
+      this.selectedPlans[category].name = name;
+      this.selectedPlans[category].category = category;
+      this.totalPrice = this.selectedPlans["Internet"].price +
+      this.selectedPlans["Tv"].price + this.selectedPlans["Fixo"].price
     }
   }
 
