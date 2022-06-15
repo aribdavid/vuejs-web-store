@@ -1,14 +1,13 @@
-# vue-store
+# como Rodar com o Docker
 
-This template should help get you started developing with Vue 3 in Vite.
+digite o comando abaixo para criar a imagem a partir do Dockerfile:
 
-## Recommended IDE Setup
+`docker build -t vuejs-web-store/docker-app .`
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+rode a aplicação a partir de um container docker:
 
-## Customize configuration
+`docker run -it -p 8080:8080 --rm --name docker-vuejs-app vuejs-web-store/docker-app` 
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
