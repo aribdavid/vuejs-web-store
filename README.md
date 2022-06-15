@@ -8,6 +8,10 @@ rode a aplicação a partir de um container docker:
 
 `docker run -it -p 8080:8080 --rm --name docker-vuejs-app vuejs-web-store/docker-app` 
 
+## Acessar aplicação com deploy feito no heroku
+
+https://vuejs-web-store.herokuapp.com/
+
 
 ## Project Setup
 
